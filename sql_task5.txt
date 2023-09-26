@@ -1,0 +1,32 @@
+use SampleDB;
+
+--create teacher table
+create table Tbl_Teachers(Id int not null identity(1,1) primary key,TeacherName varchar(50) not null, age int not null,Place varchar(50) not null);
+
+select * from Tbl_Teachers
+
+insert into Tbl_Teachers values('satheesh',45,'Kannur');
+insert into Tbl_Teachers values('sunil',43,'mahe');
+insert into Tbl_Teachers values('seetha',48,'Kannur');
+insert into Tbl_Teachers values('veena',41,'vadakara');
+
+create table Tbl_Department(Id int not null identity(1,1) primary key,TeacherId int not null,DepartmentName varchar(50) not null);
+
+select * from Tbl_Department
+
+insert into Tbl_Department values(2,'english');
+insert into Tbl_Department values(4,'mathematics');
+insert into Tbl_Department values(6,'hindi');
+
+
+--inner join
+select t.TeacherName,d.DepartmentName from Tbl_Teachers as t inner join Tbl_Department as d on t.TeacherId=d.TeacherId;
+
+--left join 
+select t.TeacherName,d.DepartmentName from Tbl_Teachers as t left join Tbl_Department as d on t.TeacherId=d.TeacherId;
+
+--right join
+select t.TeacherName,d.DepartmentName from Tbl_Teachers as t right join Tbl_Department as d on t.TeacherId=d.TeacherId;
+
+--full join 
+select t.TeacherName,d.DepartmentName from Tbl_Teachers as t full join Tbl_Department as d on t.TeacherId=d.TeacherId;

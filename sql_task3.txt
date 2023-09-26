@@ -1,0 +1,18 @@
+use SampleDB;
+
+create table Tbl_Employee(EmpId int not null identity(1,1) primary key,EmpName varchar(50) not null,EmpAge int not null,EmpDepartment varchar(50) not null,salary int not null);
+
+insert into Tbl_Employee values('sahal',23,'hr',18000);
+insert into Tbl_Employee values('kannan',27,'it',28000);
+insert into Tbl_Employee values('rahul',25,'hr',16000);
+insert into Tbl_Employee values('amal',33,'accounts',25000);
+insert into Tbl_Employee values('sonu',33,'it',48000);
+
+select * from Tbl_Employee
+
+--get second highest salary from table  
+
+select max(salary) As SecondHighestSalary from Tbl_Employee where salary < (select max(salary) from Tbl_Employee );
+
+
+

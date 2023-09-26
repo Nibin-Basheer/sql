@@ -1,0 +1,5 @@
+select * from Tbl_Employee;
+
+--list no.of employees in each departemnt
+select EmpDepartment , count(*) as EmpCount  from Tbl_Employee group by EmpDepartment;
+

@@ -1,0 +1,19 @@
+--database creation
+create database SampleDB;
+
+--table creation
+create table Tbl_Register(id int not null primary key identity(1,1),FirstName varchar(50) not null,SecondName varchar(50) not null,Dob date not null,Age int not null,
+Gender varchar(20) not null,PhoneNumber varchar(50) not null,email varchar (50) not null, Address varchar (100) not null,State varchar (20) not null,
+City varchar (50) not null,UserName varchar (20) not null,Password varchar (40) not null);
+
+--select table
+select * from Tbl_Register;
+
+--insert values into the table
+insert into Tbl_Register values('Appu','kuttan',CONVERT(date,'20.10.1999',104),23,'male','8129723827','appu123@gmail.com','appu house,calicut','kerala','calicut','appu123','appu123');
+insert into Tbl_Register values('Sunil','kumar',CONVERT(date,'20.08.1995',104),28,'male','8123232322','sunil123@gmail.com','sunil house,kannur','kerala','kannur','sunil123','sunil123');
+--update values
+update Tbl_Register set UserName='appukuttan123'  where id=6;
+
+--delete value 
+delete from Tbl_Register where id=7;
