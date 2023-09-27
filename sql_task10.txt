@@ -1,0 +1,31 @@
+CREATE TABLE Employees (EmployeeID INT PRIMARY KEY,FirstName VARCHAR(50),LastName VARCHAR(50),Department VARCHAR(50),Salary DECIMAL(10, 2));
+
+CREATE TABLE EmployeeUpdate (EmployeeID INT PRIMARY KEY,FirstName VARCHAR(50),LastName VARCHAR(50),Department VARCHAR(50),Salary DECIMAL(10, 2));
+
+INSERT INTO EmployeeS VALUES(1, 'AMAL', 'KUMAR', 'HR', 50000);
+INSERT INTO EmployeeS VALUES(2, 'ARUN', 'KRISHNA', 'IT', 60000);
+INSERT INTO EmployeeS VALUES(3, 'SANAL', 'RAJ', 'SALES', 40000);
+
+INSERT INTO EmployeeUpdate VALUES(2, 'ARUN', 'KRISHNA', 'IT', 70000);
+INSERT INTO EmployeeUpdate VALUES(4, 'SUNIL', 'RAJ', 'ACCOUNTS', 50000);
+
+--MERGE
+MERGE INTO EmployeeS AS Target USING EmployeeUpdate AS Source ON Target.EmployeeID = Source.EmployeeID
+WHEN MATCHED THEN UPDATE SET
+Target.FirstName = Source.FirstName,
+Target.LastName = Source.LastName,
+Target.Department = Source.Department,
+Target.Salary = Source.Salary
+WHEN NOT MATCHED BY TARGET THEN
+INSERT (EmployeeID, FirstName, LastName, Department, Salary)
+VALUES (Source.EmployeeID, Source.FirstName, Source.LastName, Source.Department, Source.Salary)
+WHEN NOT MATCHED BY SOURCE THEN
+DELETE;
+
+SELECT * FROM Employees
+
+
+
+
+
+
