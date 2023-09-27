@@ -1,0 +1,16 @@
+create table Tbl_Customer(CustomerId int not null primary key,CustomerName varchar(50) not null,CustomerPhone varchar(50) not null);
+select * from Tbl_Customer
+
+insert  into Tbl_Customer values(1001,'anas','9283493921');
+insert  into Tbl_Customer values(1002,'sajan','956563965');
+insert  into Tbl_Customer values(1003,'janaki','9323232329');
+insert  into Tbl_Customer values(1004,'sonu','9453449833');
+
+--create table order that references customerId from customer table..
+create table Tbl_order(OrderId int not null primary key identity(1,1),OrderDate date not null,CustomerId int,foreign key(CustomerId) references Tbl_Customer(CustomerId));
+
+insert  into Tbl_order values(CONVERT(date,'21.09.2023',104),1001);
+insert  into Tbl_order values(CONVERT(date,'22.09.2023',104),1002);
+insert  into Tbl_order values(CONVERT(date,'23.09.2023',104),1004);
+
+select * from Tbl_order

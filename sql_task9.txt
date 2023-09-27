@@ -1,0 +1,24 @@
+create table TblCustomerOrders (OrderID int primary key,CustomerName varchar(50),OrderMonth varchar(20),ProductName varchar(50),Quantity int,
+TotalAmount decimal(10, 2));
+
+select * from TblCustomerOrders
+
+insert into TblCustomerOrders values(1001,'nibin','January','P1',2,349.50);
+insert into TblCustomerOrders values(1002,'nihad','February','P2',1,399);
+insert into TblCustomerOrders values(1003,'majid','march','P4',2,599);
+insert into TblCustomerOrders values(1004,'manu','January','P1',2,349.50);
+insert into TblCustomerOrders values(1005,'sasi','march','P4',2,599);
+insert into TblCustomerOrders values(1006,'sonu','February','P2',1,399);
+insert into TblCustomerOrders values(1007,'hilal','January','P3',1,577);
+
+--pivot
+select ProductName,January,February,march from (select ProductName,TotalAmount,OrderMonth from TblCustomerOrders) as TblSource pivot(sum(TotalAmount) for OrderMonth in ([January] , [February], [march])) as TblPivot;
+
+--unpivot
+select ProductName, OrderMonth, TotalAmount
+from (select ProductName, January, February, march from TblCustomerOrders) TblSource
+unpivot ( TotalAmount for OrderMonth in (January, February, march)) as Unpivotdata ;
+
+
+
+
